@@ -12,7 +12,10 @@ import { WORKSHOP_INFO } from '../data/workshopData.ts';
 
 export const LocationHoursSection: React.FC = () => {
   const handleOpenGoogleMaps = () => {
-    // Open Google Maps search for workshop
+    if (WORKSHOP_INFO.address.startsWith('http')) {
+      window.open(WORKSHOP_INFO.address, '_blank', 'noopener,noreferrer');
+      return;
+    }
     const query = encodeURIComponent(`${WORKSHOP_INFO.name} ${WORKSHOP_INFO.address}`);
     window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, '_blank', 'noopener,noreferrer');
   };
@@ -49,7 +52,19 @@ export const LocationHoursSection: React.FC = () => {
                   <span>Alamat Bengkel Workshop</span>
                 </div>
                 <div className="text-base sm:text-lg font-bold text-white">
-                  {WORKSHOP_INFO.address}
+                  {WORKSHOP_INFO.address.startsWith('http') ? (
+                    <a
+                      href={WORKSHOP_INFO.address}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-orange-400 hover:text-orange-300 underline underline-offset-4 flex items-center gap-1.5"
+                    >
+                      <span>Buka Titik Lokasi Google Maps</span>
+                      <Navigation className="w-4 h-4 shrink-0" />
+                    </a>
+                  ) : (
+                    WORKSHOP_INFO.address
+                  )}
                 </div>
                 <p className="text-xs sm:text-sm text-slate-300">
                   {WORKSHOP_INFO.city} (akses mudah roda 4 & roda 2).

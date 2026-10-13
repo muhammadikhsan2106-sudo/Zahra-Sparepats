@@ -105,7 +105,18 @@ export const Footer: React.FC = () => {
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
                 <span className="text-[11px] leading-tight">
-                  {WORKSHOP_INFO.address}, {WORKSHOP_INFO.city}
+                  {WORKSHOP_INFO.address.startsWith('http') ? (
+                    <a
+                      href={WORKSHOP_INFO.address}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-orange-400 underline underline-offset-2"
+                    >
+                      Buka Google Maps ({WORKSHOP_INFO.city})
+                    </a>
+                  ) : (
+                    `${WORKSHOP_INFO.address}, ${WORKSHOP_INFO.city}`
+                  )}
                 </span>
               </div>
               <div className="flex items-center gap-2">
