@@ -9,7 +9,7 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
   const handleWhatsAppChat = () => {
     const message = encodeURIComponent(
-      'Halo Zahra Sparepart (Berkah Jaya), saya ingin konsultasi servis kendaraan / mekanik panggilan.'
+      'Halo ZahraSparepart, saya ingin konsultasi servis kendaraan / mekanik panggilan.'
     );
     window.open(`https://wa.me/${WORKSHOP_INFO.whatsappNumber}?text=${message}`, '_blank', 'noopener,noreferrer');
   };
